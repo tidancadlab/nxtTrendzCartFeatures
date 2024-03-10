@@ -132,7 +132,7 @@ hr {
   .checkout-popup-payment-option {
     flex-direction: column;
   }
-  .checkout-item{
+  .checkout-item {
     flex-direction: column;
     gap: 4px;
     justify-content: flex-start;
