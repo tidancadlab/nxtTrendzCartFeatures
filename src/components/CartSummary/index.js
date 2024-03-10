@@ -1,9 +1,12 @@
+import Popup from 'reactjs-popup'
 import CartContext from '../../context/CartContext'
+import Checkout from '../Checkout'
 import './index.css'
 
 export default () => (
   <CartContext.Consumer>
     {value => {
+      const {removeAllCartItems} = value
       const totalAmount = value.cartList.reduce(
         (total, item) => total + parseFloat(item.price * item.quantity),
         0,
@@ -14,9 +17,26 @@ export default () => (
             Order Total: <span>{totalAmount} /-</span>
           </h1>
           <p className="total_item">{value.cartList.length} Items in cart</p>
-          <button className="checkOut_btn" type="button">
-            Checkout
-          </button>
+          <Popup
+            trigger={() => (
+              <button className="checkOut_btn" type="button">
+                Checkout
+              </button>
+            )}
+            modal
+            nested
+            closeOnDocumentClick={false}
+          >
+            {close => (
+              <>
+                <Checkout
+                  cartList={value.cartList}
+                  close={close}
+                  removeAllCartItems={removeAllCartItems}
+                />
+              </>
+            )}
+          </Popup>
         </div>
       )
     }}
