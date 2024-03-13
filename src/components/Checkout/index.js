@@ -126,6 +126,16 @@ class Checkout extends Component {
                 <input
                   type="radio"
                   name="payment"
+                  id="netBanking"
+                  disabled
+                  onClick={this.onPaymentOption}
+                />
+                <label htmlFor="netBanking">Net Banking</label>
+              </div>
+              <div className="payment-option">
+                <input
+                  type="radio"
+                  name="payment"
                   id="cod"
                   onClick={this.onPaymentOption}
                 />
